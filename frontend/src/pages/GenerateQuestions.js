@@ -38,11 +38,8 @@ export default function GenerateQuestions() {
     try {
       await axios.post(
         `${API}/questions/generate`,
-        null,
-        {
-          params: formData,
-          withCredentials: true
-        }
+        formData,
+        { withCredentials: true }
       );
       toast.success('Questions generated successfully!');
       navigate('/tests/create');

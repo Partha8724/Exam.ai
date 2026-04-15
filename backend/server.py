@@ -154,6 +154,19 @@ class StudentProgress(BaseModel):
     strong_topics: List[str] = []
     last_updated: str
 
+class GenerateQuestionsRequest(BaseModel):
+    exam_type: str
+    subject: str
+    count: int = 10
+
+class CreateTestRequest(BaseModel):
+    exam_type: str
+    subject: str
+    question_count: int = 10
+
+class SubmitTestRequest(BaseModel):
+    answers: Dict[str, str]
+
 # Auth Routes
 @api_router.post("/auth/session")
 async def exchange_session(session_id: str):
@@ -237,7 +250,10 @@ async def get_questions(exam_type: Optional[str] = None, subject: Optional[str] 
     return questions
 
 @api_router.post("/questions/generate")
-async def generate_questions(exam_type: str, subject: str, count: int = 10, user: dict = Depends(get_current_user)):
+async def generate_questions(body: GenerateQuestionsRequest, user: dict = Depends(get_current_user)):
+    exam_type = body.exam_type
+    subject = body.subject
+    count = body.count
     
     try:
         chat = LlmChat(
@@ -275,6 +291,7 @@ async def generate_questions(exam_type: str, subject: str, count: int = 10, user
                 "created_at": datetime.now(timezone.utc).isoformat()
             }
             await db.questions.insert_one(question_doc)
+            question_doc.pop("_id", None)
             saved_questions.append(question_doc)
         
         return {"questions": saved_questions, "count": len(saved_questions)}
@@ -284,7 +301,10 @@ async def generate_questions(exam_type: str, subject: str, count: int = 10, user
 
 # Mock Tests Routes
 @api_router.post("/tests/create")
-async def create_test(exam_type: str, subject: str, question_count: int = 10, user: dict = Depends(get_current_user)):
+async def create_test(body: CreateTestRequest, user: dict = Depends(get_current_user)):
+    exam_type = body.exam_type
+    subject = body.subject
+    question_count = body.question_count
     
     questions = await db.questions.find(
         {"exam_type": exam_type, "subject": subject},
@@ -307,11 +327,13 @@ async def create_test(exam_type: str, subject: str, question_count: int = 10, us
         "created_at": datetime.now(timezone.utc).isoformat()
     }
     await db.mock_tests.insert_one(test_doc)
+    test_doc.pop("_id", None)
     
     return {"test": test_doc, "questions": questions}
 
 @api_router.post("/tests/{test_id}/submit")
-async def submit_test(test_id: str, answers: Dict[str, str], user: dict = Depends(get_current_user)):
+async def submit_test(test_id: str, body: SubmitTestRequest, user: dict = Depends(get_current_user)):
+    answers = body.answers
     
     test_doc = await db.mock_tests.find_one({"test_id": test_id, "user_id": user["user_id"]}, {"_id": 0})
     if not test_doc:
@@ -476,6 +498,7 @@ async def upload_material(
         "uploaded_at": datetime.now(timezone.utc).isoformat()
     }
     await db.study_materials.insert_one(material_doc)
+    material_doc.pop("_id", None)
     
     return material_doc
 
@@ -591,6 +614,7 @@ async def ai_teacher_chat(body: ChatMessage, user: dict = Depends(get_current_us
             "created_at": datetime.now(timezone.utc).isoformat()
         }
         await db.chat_history.insert_one(chat_doc)
+        chat_doc.pop("_id", None)
         
         return {"response": response, "chat_id": chat_doc["chat_id"]}
     except Exception as e:
@@ -641,6 +665,7 @@ async def generate_interview_questions(body: InterviewRequest, user: dict = Depe
             "created_at": datetime.now(timezone.utc).isoformat()
         }
         await db.interview_prep.insert_one(interview_doc)
+        interview_doc.pop("_id", None)
         
         return {"interview_id": interview_doc["interview_id"], "questions": questions_data}
     except Exception as e:

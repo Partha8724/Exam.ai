@@ -38,11 +38,8 @@ export default function CreateTest() {
     try {
       const response = await axios.post(
         `${API}/tests/create`,
-        null,
-        {
-          params: formData,
-          withCredentials: true
-        }
+        formData,
+        { withCredentials: true }
       );
       toast.success('Test created successfully!');
       navigate(`/test/${response.data.test.test_id}`);
