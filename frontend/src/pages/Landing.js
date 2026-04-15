@@ -4,6 +4,8 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { BookOpen, Target, TrendingUp, Award, Brain, GraduationCap, MessageCircle, Briefcase, Users, Sparkles, ChevronDown } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import Book3D from '../components/Book3D';
+import FuturisticGrid from '../components/FuturisticGrid';
+import KnowledgeLogo from '../components/KnowledgeLogo';
 
 const EXAM_TOPICS = [
   { name: 'UPSC Civil Services', icon: GraduationCap, desc: 'Prelims, Mains & Interview Prep' },
@@ -64,6 +66,9 @@ export default function Landing() {
 
   return (
     <div ref={containerRef} className="relative" style={{ background: '#050505' }}>
+      {/* Futuristic Grid Background Animation */}
+      <FuturisticGrid scrollProgress={scrollProgress} />
+
       {/* 3D Book Canvas */}
       <Book3D scrollProgress={scrollProgress} />
 
@@ -90,7 +95,7 @@ export default function Landing() {
             className="max-w-2xl"
           >
             <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[rgba(212,175,55,0.3)] bg-[rgba(212,175,55,0.08)] mb-8">
-              <Sparkles className="w-4 h-4 text-[#D4AF37]" />
+              <KnowledgeLogo size={20} />
               <span className="text-sm font-outfit text-[#D4AF37] tracking-wide">AI-Powered Exam Mastery</span>
             </div>
 
@@ -299,8 +304,8 @@ export default function Landing() {
         {/* Footer */}
         <footer className="border-t border-[rgba(255,255,255,0.05)] py-10 px-6">
           <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <BookOpen className="w-6 h-6 text-[#D4AF37]" />
+            <div className="flex items-center gap-3">
+              <KnowledgeLogo size={32} />
               <span className="font-playfair text-lg font-bold">Exam Prep Hub</span>
             </div>
             <p className="text-sm text-[#A1A1AA] font-outfit">AI-Powered Government Exam Preparation Platform</p>

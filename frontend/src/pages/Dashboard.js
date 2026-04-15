@@ -7,6 +7,7 @@ import { BookOpen, Target, TrendingUp, FileText, Plus, LogOut, Brain, Award, Mes
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Progress } from '../components/ui/progress';
+import KnowledgeLogo from '../components/KnowledgeLogo';
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
@@ -65,7 +66,7 @@ export default function Dashboard() {
       <header className="glass-card border-b border-[rgba(255,255,255,0.1)] sticky top-0 z-50">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <BookOpen className="w-8 h-8 text-[#D4AF37]" />
+            <KnowledgeLogo size={36} />
             <h1 className="font-playfair text-2xl font-bold">Exam Prep Hub</h1>
           </div>
           <nav className="hidden md:flex items-center gap-6 font-outfit text-sm">

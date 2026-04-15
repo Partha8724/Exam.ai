@@ -10,8 +10,8 @@ import time
 class ExamPrepAPITester:
     def __init__(self, base_url="https://exam-prep-hub-302.preview.emergentagent.com"):
         self.base_url = base_url
-        self.session_token = None
-        self.user_id = None
+        self.session_token = "test_session_1776292622098"  # From MongoDB setup
+        self.user_id = "test-user-1776292622098"
         self.tests_run = 0
         self.tests_passed = 0
         self.test_results = []
