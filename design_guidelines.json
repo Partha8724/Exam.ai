@@ -1,0 +1,108 @@
+{
+  "theme": "dark",
+  "archetype": "Archetype 5 (Jewel & Luxury)",
+  "color_palette": {
+    "background_base": "#050505",
+    "background_surface": "#09090b",
+    "background_card": "rgba(255, 255, 255, 0.03)",
+    "text_primary": "#FFFFFF",
+    "text_secondary": "#A1A1AA",
+    "accent_primary": "#D4AF37",
+    "accent_secondary": "#B87333",
+    "accent_glow": "rgba(212, 175, 55, 0.15)",
+    "border_default": "rgba(255, 255, 255, 0.1)",
+    "success": "#2A9D8F",
+    "warning": "#E9C46A",
+    "error": "#E76F51"
+  },
+  "typography": {
+    "font_families": {
+      "heading": "'Playfair Display', serif",
+      "body": "'Outfit', sans-serif",
+      "mono": "'JetBrains Mono', monospace"
+    },
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-none",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl tracking-tight",
+      "h3": "text-xl sm:text-2xl tracking-tight",
+      "h4": "text-lg sm:text-xl",
+      "body": "text-base leading-relaxed",
+      "small": "text-sm text-[#A1A1AA] uppercase tracking-[0.2em]"
+    }
+  },
+  "spacing_and_layout": {
+    "padding_scale": ["p-4", "p-8", "p-12", "p-24"],
+    "grid_modes": {
+      "landing": "Bento Grid Mode A (Tetris Grid, gap-8 to gap-12, col-span mixing)",
+      "dashboard": "Bento Grid Mode B (Control Room Grid, grid-cols-1 md:grid-cols-3 lg:grid-cols-4, gap-4 to gap-6)"
+    },
+    "alignment": "Optical alignment, asymmetrical hero sections, left-aligned data"
+  },
+  "surface_strategies": {
+    "cards": "Crystal Glassmorphism: bg-black/60 backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.12)]",
+    "header": "Crystal Glassmorphism with 1px bottom border",
+    "highlight_cards": "The Tracing Beam (Aceternity Look) with Gold/Copper gradient glow for Jackpot/AI Prediction sections"
+  },
+  "motion_and_interactions": {
+    "landing_hero": "React Three Fiber scroll-driven 3D book animation. Use ScrollControls from @react-three/drei. Map scroll offset to book open/close and page turns.",
+    "hover_states": "translate-y-[-2px] shadow-lg border-white/20 text-white transition-all duration-300",
+    "page_transitions": "Framer Motion staggered fade-in up",
+    "accessibility": "Respect prefers-reduced-motion, add aria-hidden to decorative 3D elements"
+  },
+  "media": {
+    "image_urls": {
+      "hero_background": {
+        "url": "https://images.unsplash.com/photo-1771226281605-f1e505ade901?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzV8MHwxfHNlYXJjaHwyfHxwcmVtaXVtJTIwZGFyayUyMGFic3RyYWN0JTIwdGV4dHVyZXxlbnwwfHx8fDE3NzYyOTAwODJ8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Abstract dark geometric pattern with golden accents",
+        "category": "background"
+      },
+      "government_seal": {
+        "url": "https://images.unsplash.com/photo-1641324115786-fc465925fd9c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NDh8MHwxfHNlYXJjaHwxfHxnb2xkJTIwY3Jlc3QlMjBzZWFsJTIwc3RhbXB8ZW58MHx8fHwxNzc2MjkwMDc3fDA&ixlib=rb-4.1.0&q=85",
+        "description": "Gold crest/seal for exam authority sections",
+        "category": "icon/logo"
+      },
+      "study_vibe": {
+        "url": "https://images.unsplash.com/photo-1769794370990-614f765fa360?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHwxfHxmb2N1c2VkJTIwc3R1ZGVudCUyMHN0dWR5JTIwZGVzayUyMGxhbXB8ZW58MHx8fHwxNzc2MjkwMDgzfDA&ixlib=rb-4.1.0&q=85",
+        "description": "Lit candle next to open notebook and laptop, moody study vibe",
+        "category": "feature_showcase"
+      },
+      "architecture": {
+        "url": "https://images.unsplash.com/photo-1709967884183-7ffa9d168508?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzV8MHwxfHNlYXJjaHwyfHxnb3Zlcm5tZW50JTIwYnVpbGRpbmclMjBpbmRpYSUyMGFyY2hpdGVjdHVyZXxlbnwwfHx8fDE3NzYyOTAwNzd8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Large ornate government building, for APSC/UPSC sections",
+        "category": "feature_showcase"
+      }
+    }
+  },
+  "component_instructions": {
+    "libraries_to_install": [
+      "three",
+      "@react-three/fiber",
+      "@react-three/drei",
+      "gsap",
+      "framer-motion",
+      "lucide-react",
+      "clsx",
+      "tailwind-merge",
+      "recharts"
+    ],
+    "shadcn_components": [
+      "card",
+      "button",
+      "progress",
+      "tabs",
+      "dialog",
+      "dropdown-menu"
+    ],
+    "testing": "All interactive elements MUST include data-testid (e.g., data-testid='start-mock-test-button')."
+  },
+  "instructions_to_main_agent": [
+    "1. Setup a dark theme Tailwind configuration utilizing the color palette provided. DO NOT use HTML-based components for advanced user interactions.",
+    "2. Implement the 3D scroll-driven book using @react-three/fiber and @react-three/drei's ScrollControls. Wrap the 3D scene in a full-height container and map scroll.offset to book opening/page turning logic. Use a simple BoxGeometry for pages if custom GLTF is unavailable.",
+    "3. Structure the landing page around the 3D canvas (position fixed or sticky) with HTML overlay sections revealing text as the user scrolls.",
+    "4. For the Student Dashboard, use Bento Grid Mode B (Control Room). Dense, high-contrast typography, and Glassmorphism cards.",
+    "5. Utilize Playfair Display for massive, luxury-feel headings, and Outfit for readable, modern dashboard data.",
+    "6. Use Recharts for performance analytics and weakness analysis.",
+    "7. DO NOT use placeholder images. Use the provided Unsplash URLs.",
+    "8. Ensure the dashboard contains student weakness analysis, mock test system, and a section for AI exam question prediction (Jackpot features)."
+  ]
+}
