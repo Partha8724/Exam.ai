@@ -1,0 +1,1 @@
+{  "name": "exam-ai-root",  "private": true,  "scripts": {    "install-client": "cd frontend && npm install",    "build": "cd frontend && npm install && npm run build"  }} 
